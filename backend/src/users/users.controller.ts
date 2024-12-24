@@ -9,9 +9,9 @@ export class UsersController {
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
-    const user = new User()
-    user.username = createUserDto.username
-    
+    const user = new User();
+    user.username = createUserDto.username;
+
     return this.usersService.create(user);
   }
 

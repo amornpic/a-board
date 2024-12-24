@@ -31,7 +31,7 @@ describe('UsersService', () => {
 
   it('should create a new user', async () => {
     const result = await service.create(user);
-    
+
     expect(repository.save).toHaveBeenCalledTimes(1);
     expect(result).toEqual(user);
   });

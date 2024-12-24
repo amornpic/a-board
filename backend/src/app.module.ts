@@ -3,8 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './users/entities/user.entity';
 import { PostsModule } from './posts/posts.module';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -20,6 +20,7 @@ import { PostsModule } from './posts/posts.module';
     }),
     UsersModule,
     PostsModule,
+    CommentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

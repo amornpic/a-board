@@ -1,4 +1,5 @@
-import { Comment } from '../../comments/entities/comment.entity';
+
+import { Post } from '../../posts/entities/post.entity';
 import { User } from '../../users/entities/user.entity';
 import {
   Entity,
@@ -7,28 +8,21 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
-  OneToMany,
 } from 'typeorm';
 
 @Entity()
-export class Post {
-  @PrimaryGeneratedColumn()
+export class Comment {
+@PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  title: string;
+  massage: string;
 
-  @Column()
-  community: string;
-
-  @Column()
-  body: string;
+  @ManyToOne(() => Post, (user) => user.comments)
+  post: Post;
 
   @ManyToOne(() => User, (user) => user.posts)
   user: User;
-
-  @OneToMany(() => Comment, (comment) => comment.post)
-  comments: Comment[];
 
   @CreateDateColumn()
   created_at: Date;

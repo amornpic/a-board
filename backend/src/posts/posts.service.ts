@@ -36,14 +36,14 @@ export class PostsService {
 
   findAll(): Promise<Post[]> {
     return this.postsRepository.find({
-      relations: ['user'],
+      relations: ['user', 'comments'],
     });
   }
 
   async findOne(id: number): Promise<Post> {
     const post = await this.postsRepository.findOne({
       where: { id },
-      relations: ['user'],
+      relations: ['user','comments','comments.user'],
     });
 
     if (!post) {

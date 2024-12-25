@@ -2,7 +2,6 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import Link from 'next/link'
-import { Button } from './ui/button'
 import { Post } from '@/types/post'
 import { Badge } from './ui/badge'
 import { MessageCircle } from 'lucide-react'

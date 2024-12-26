@@ -23,7 +23,7 @@ export function PostsNav() {
             Home
           </Link>
           <Link
-            href="/posts/blog"
+            href="/our-posts"
             className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-white/10"
           >
             <BookOpen className="w-4 h-4" />

@@ -29,6 +29,7 @@ describe('PostsController', () => {
           useValue: {
             create: jest.fn().mockResolvedValue(mockPost),
             findAll: jest.fn().mockResolvedValue([mockPost]),
+            findByUserId: jest.fn().mockResolvedValue([mockPost]),
             findOne: jest.fn().mockResolvedValue(mockPost),
             update: jest.fn(),
             remove: jest.fn(),
@@ -63,9 +64,15 @@ describe('PostsController', () => {
 
   describe('findAll', () => {
     it('should return an array of posts', async () => {
-      const result = await controller.findAll();
+      const result = await controller.findAll(undefined);
       expect(result).toBeDefined();
       expect(service.findAll).toHaveBeenCalledTimes(1);
+    });
+
+    it('should return an array of posts by user id', async () => {
+      const result = await controller.findAll(99);
+      expect(result).toBeDefined();
+      expect(service.findByUserId).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -96,7 +103,7 @@ describe('PostsController', () => {
   describe('remove', () => {
     it('should delete a post', async () => {
       const id = 1;
-      await controller.remove(id.toString(), mockUser.id);
+      await controller.remove(id.toString(), {user_id: mockUser.id});
       expect(service.remove).toHaveBeenCalledTimes(1);
       expect(service.remove).toHaveBeenCalledWith(id, mockUser.id);
     });

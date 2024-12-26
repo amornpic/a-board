@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -21,7 +22,11 @@ export class PostsController {
   }
 
   @Get()
-  findAll() {
+  findAll(@Query('user_id') user_id: number) {
+    if (user_id !== undefined) {
+      return this.postsService.findByUserId(user_id);
+    }
+    
     return this.postsService.findAll();
   }
 
@@ -36,7 +41,7 @@ export class PostsController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string, @Body() user_id: number) {
+  remove(@Param('id') id: string, @Body() {user_id}: {user_id: number}) {
     return this.postsService.remove(+id, user_id);
   }
 }

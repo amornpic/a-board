@@ -2,7 +2,7 @@ import { User } from "./auth"
 import { Comment } from "./comment"
 
 export interface Post {
-    id: string
+    id: number
     title: string
     body: string
     community: string

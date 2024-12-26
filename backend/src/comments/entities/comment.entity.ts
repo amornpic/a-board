@@ -18,7 +18,9 @@ export class Comment {
   @Column()
   massage: string;
 
-  @ManyToOne(() => Post, (user) => user.comments)
+  @ManyToOne(() => Post, (user) => user.comments, {
+    onDelete: 'CASCADE'
+  })
   post: Post;
 
   @ManyToOne(() => User, (user) => user.posts)

@@ -40,6 +40,13 @@ export class PostsService {
     });
   }
 
+  findByUserId(user_id: number): Promise<Post[]> {
+    return this.postsRepository.find({
+      relations: ['user', 'comments'],
+      where: { user: { id: user_id } },
+    });
+  }
+
   async findOne(id: number): Promise<Post> {
     const post = await this.postsRepository.findOne({
       where: { id },
@@ -67,7 +74,8 @@ export class PostsService {
 
   async remove(id: number, user_id: number): Promise<void> {
     const post = await this.findOne(id);
-
+    console.log(post.user.id, user_id);
+    
     if (post.user.id !== user_id) {
       throw new UnauthorizedException('You can only delete your own posts');
     }

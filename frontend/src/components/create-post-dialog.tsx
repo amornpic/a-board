@@ -16,7 +16,8 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
 import { useAuth } from "@/context/auth"
 import { useRouter } from "next/navigation"
-import { useMemo } from "react"
+import { Community } from "@/enums/community"
+import { enumToArray } from "@/lib/utils"
 
 interface CreatePostDialogProps {
   open: boolean
@@ -38,7 +39,7 @@ const formSchema = z.object({
     }),
   })
 
-export function CreatePostDialog({ open, onOpenChange, communityOptions }: CreatePostDialogProps) {
+export function CreatePostDialog({ open, onOpenChange }: CreatePostDialogProps) {
     const {user} = useAuth()
     const router = useRouter();
 
@@ -50,14 +51,6 @@ export function CreatePostDialog({ open, onOpenChange, communityOptions }: Creat
           body: "",
         },
       })
-      
-      const communities = useMemo(() => {
-        if (communityOptions && communityOptions?.length > 0) {
-          return communityOptions
-        } else {
-         return
-        }
-      }, [communityOptions])
     
       async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
@@ -101,9 +94,9 @@ export function CreatePostDialog({ open, onOpenChange, communityOptions }: Creat
                                 </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                    {communities?.length && communities.map((community, index) => (
-                                    <SelectItem key={index} value={community}>
-                                        {community}
+                                    {enumToArray(Community).map((value, index) => (
+                                    <SelectItem key={index} value={value}>
+                                        {value}
                                     </SelectItem>
                                     ))}
                                 </SelectContent>

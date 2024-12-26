@@ -15,6 +15,8 @@ import { CreatePostDialog } from "@/components/create-post-dialog"
 import Posts from "@/components/posts"
 import { Post } from "@/types/post"
 import { useAuth } from "@/context/auth"
+import { Community } from "@/enums/community"
+import { enumToArray } from "@/lib/utils"
 
 export default function PostsPage() {
   const [createPostOpen, setCreatePostOpen] = useState(false)
@@ -48,10 +50,6 @@ export default function PostsPage() {
         return filteredPosts.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
     }, [searchText, posts, communityFilter])
 
-    const communityOptions = useMemo(() => {
-        return Object.keys(Object.groupBy(posts, ({ community }) => community))
-    }, [posts])
-
   return (
     <div className="max-w-3xl mx-auto">
       <div className="flex items-center justify-between mb-6 gap-4">
@@ -70,7 +68,7 @@ export default function PostsPage() {
                 </SelectTrigger>
                 <SelectContent>
                     <SelectGroup>
-                        {communityOptions.length > 0 && communityOptions.map((community, index) => (
+                        {enumToArray(Community).map((community, index) => (
                             <SelectItem key={index} value={community}>{community}</SelectItem>
                         ))}
                     </SelectGroup>
@@ -85,7 +83,6 @@ export default function PostsPage() {
       <Posts posts={filteredPosts} />
 
       <CreatePostDialog
-        communityOptions={communityOptions}
         open={createPostOpen}
         onOpenChange={setCreatePostOpen}
       />

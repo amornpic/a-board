@@ -39,7 +39,7 @@ export default function SignInPage() {
         await login(values.username)
         router.push("/posts")
       } catch (error) {
-        form.setError('username', { message: error.message })
+        form.setError('username', { message: (error as { message: string }).message })
       }
   }
   

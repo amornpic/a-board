@@ -16,7 +16,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
 import { useAuth } from "@/context/auth"
 import { useRouter } from "next/navigation"
-import { useEffect, useMemo, useState } from "react"
+import { useMemo } from "react"
 
 interface CreatePostDialogProps {
   open: boolean
@@ -41,7 +41,6 @@ const formSchema = z.object({
 export function CreatePostDialog({ open, onOpenChange, communityOptions }: CreatePostDialogProps) {
     const {user} = useAuth()
     const router = useRouter();
-    // const [communities, setCommunities] = useState<string[]>([]);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),

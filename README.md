@@ -45,6 +45,10 @@ a-board is a web application designed to provide a platform for users to create 
     - **Frontend**: http://localhost:3000
     - **Backend API**: http://localhost:3002
 
+### How to create a user
+- Import a-board.postman_collection.json to Postman
+- Call to **Create user API** in a-board postman collection
+
 ### How to run test (backend)
 1. **Navigate to the backend directory**:
    ```bash
@@ -57,3 +61,11 @@ a-board is a web application designed to provide a platform for users to create 
 
 ### Entity Relationship (ER) Diagram
 ![aBoard ERD](images/aboard-erd.png)
+
+
+### Screenshots
+![signin](images/signin.png)
+![posts](images/posts.png)
+![post-detail](images/post-detail.png)
+![post-detail2](images/post-detail2.png)
+![our-posts](images/our-posts.png)

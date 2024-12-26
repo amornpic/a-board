@@ -67,7 +67,7 @@ export default function Posts({ posts, canEdit }: PostsProps) {
             <div className="flex flex-row mb-2 justify-between">
                 <div className="flex flex-row gap-2 mb-2 items-center">
                     <Avatar>
-                        <AvatarImage src="https://i.pravatar.cc/150?img=2" alt={post.user.username} />
+                        <AvatarImage src={`https://i.pravatar.cc/150?img=${post.user.id}`} alt={post.user.username} />
                         <AvatarFallback>{post.user.username}</AvatarFallback>
                     </Avatar>
                     <p className="text-md text-muted-foreground mb-1">
